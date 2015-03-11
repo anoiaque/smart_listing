@@ -1,3 +1,6 @@
+# Patch for Mongodb/Mongoid order
+Handle smart listing columns ordering with Mongodb using Mongoid gem
+
 # SmartListing
 
 SmartListing helps creating AJAX-enabled lists of ActiveRecord collections or arrays with pagination, filtering, sorting and in-place editing.
