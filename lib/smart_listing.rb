@@ -100,7 +100,7 @@ module SmartListing
       else
         # let's sort by all attributes
         #
-        @collection = @collection.order(sort_keys.collect{|s| "#{s[1]} #{@sort[s[0]]}" if @sort[s[0]]}.compact) if @sort && @sort.any?
+        @collection = @collection.order_by(@sort) if @sort && @sort.any?
 
         if @options[:paginate] && @per_page > 0
           @collection = @collection.page(@page).per(@per_page)
@@ -165,7 +165,10 @@ module SmartListing
     end
 
     def sort_order attribute
-      @sort && @sort[attribute].present? ? @sort[attribute] : nil
+      order = @sort && @sort[attribute].present? ? @sort[attribute] : nil
+      return "asc" if order == 1
+      return "desc" if order == -1
+      nil
     end
 
     def base_param
